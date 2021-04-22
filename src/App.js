@@ -6,6 +6,7 @@ import { useState,useRef,useEffect } from 'react'
 import { auth } from "./firebase/firebase" 
 import 'firebase/auth'
 import firebase from 'firebase/app'
+import { BsFillPersonFill } from 'react-icons/bs'
 // import { useAuth } from "./context/AuthContext"
 
 
@@ -48,14 +49,16 @@ function App() {
 
 	return (
 		<div className="App">
-			<Title user={user}/>
-			<button className="btn  my-1   btn-outline-success" onClick={signIn}>
+			<Title user={user} setError={setError}/>
+			{!user && <div>
+				<button className="signInButton" onClick={signIn}>
 				Sign in with Google
-				{/* <PersonIcon/> */}
+				<BsFillPersonFill />
 				</button>
-			{/* {user && <p>{user}</p>}	 */}
-			{user && <UploadForm user={user} />}
-			<ImageGrid setSelectedImg={setSelectedImg} user={user}/>
+			</div>}
+			{error && <div>{error}</div>}
+			{user && <UploadForm user={user} setError={setError} />}
+			<ImageGrid setSelectedImg={setSelectedImg} user={user} setError={setError}/>
 			{selectedImg && <Modal selectedImg={selectedImg} setSelectedImg={setSelectedImg }/>}
 		</div>
 	);

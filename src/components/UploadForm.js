@@ -1,9 +1,9 @@
 import React,{ useState } from 'react'
 import ProgressBar from './ProgressBar'
 
-const UploadForm = ({user}) => {
+const UploadForm = ({user,setError}) => {
 	const [file,setFile] = useState(null)
-	const [error,setError] = useState(null)
+	// const [error,setError] = useState(null)
 	const allowedTypes = ['image/png','image/jpeg']
 	const changeHandlerImage = (e) => {
 		// console.log("changed")
@@ -30,7 +30,7 @@ const UploadForm = ({user}) => {
 				<span>+</span>
 			</label>
 			<div className="output">
-				{error && <div className="error">{error}</div>}
+				{/* {error && <div className="error">{error}</div>} */}
 				{file && <div>{file.name}</div>}
 				{file && <ProgressBar file={file} setFile={setFile} user={user}/>}
 			</div>
