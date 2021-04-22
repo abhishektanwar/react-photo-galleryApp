@@ -53,8 +53,9 @@ function App() {
 				Sign in with Google
 				{/* <PersonIcon/> */}
 				</button>
-			<UploadForm />
-			<ImageGrid setSelectedImg={setSelectedImg}/>
+			{/* {user && <p>{user}</p>}	 */}
+			{user && <UploadForm user={user} />}
+			<ImageGrid setSelectedImg={setSelectedImg} user={user}/>
 			{selectedImg && <Modal selectedImg={selectedImg} setSelectedImg={setSelectedImg }/>}
 		</div>
 	);

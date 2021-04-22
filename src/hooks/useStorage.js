@@ -2,7 +2,7 @@
 import { useState,useEffect } from 'react'
 import { projectStorage,projectFirestore,timestamp } from "../firebase/firebase"
 
-const useStorage = (file) => {
+const useStorage = (file,user) => {
 	const [error,setError] = useState(null)
 	const [progress,setProgress] = useState(0)
 	const [url,setUrl] = useState('')
@@ -30,12 +30,21 @@ const useStorage = (file) => {
 		},async () => {
 			const url = await storageRef.getDownloadURL()
 			const createdAt = timestamp()
+			const uploadedBy = user.name
+			const userProfilePhoto = user.photo
+			const userId = user.id
 			console.log(createdAt)
 			// adding the url of the image uploaded in storage to the firestore document
 			// so that images can be rendered by fetching urls from firestore doc
 			collectionRef.add({
 				url:url,
-				createdAt:createdAt
+				createdAt:createdAt,
+				uploadedBy:uploadedBy,
+				userProfilePhoto:userProfilePhoto,
+				userId:userId,
+				comments:[],
+				likes:0,
+				likedBy:[]
 			})
 			setUrl(url)
 		})
