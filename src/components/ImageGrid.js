@@ -105,7 +105,7 @@ const ImageGrid = ({setSelectedImg,user,setError}) => {
 				</motion.div>
 				
 			)) }
-			{commentIconClicked && <Comments user={user} setCommentIconClicked={setImgIdOfCommentClicked} imgIdOfCommentClicked={imgIdOfCommentClicked} setError={setError} />}
+			{commentIconClicked && <Comments user={user} setCommentIconClicked={setImgIdOfCommentClicked} imgIdOfCommentClicked={imgIdOfCommentClicked} setError={setError} setCommentIconClicked={setCommentIconClicked} />}
 		</div>
 	) 
 }
